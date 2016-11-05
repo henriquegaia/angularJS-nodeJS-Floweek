@@ -1,0 +1,29 @@
+=================================================
+HIGH
+=================================================
+
+-unique references to c20 c18 ...
+    -playerController
+        case 'c20':
+            ...
+            break;
+        case 'c18':
+            ...
+
+        if (playerParam == 'c20' || playerParam == 'c18')
+
+-allow user to change multipliers values
+-ask user who is favourite player
+-options to show/hide multiplier columns
+-style winning row
+
+=================================================
+MEDIUM
+=================================================
+
+-order table by
+    -total goals weighted
+
+=================================================
+LOW
+=================================================

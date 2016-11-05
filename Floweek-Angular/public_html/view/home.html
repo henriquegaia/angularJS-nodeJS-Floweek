@@ -1,0 +1,125 @@
+<!-- ----------------------------------------------------------------------- -->
+
+<div class="panel-group">
+    <div class="panel panel-primary">
+        <div class="panel-heading">Player - Most Goals</div>
+        <div class="panel-body">Panel Content</div>
+    </div>
+    <div class="panel panel-success">
+        <div class="panel-heading">Player - Most Trophies</div>
+        <div class="panel-body">Panel Content</div>
+    </div>
+</div>
+
+<!-- ----------------------------------------------------------------------- -->
+<div>
+    <input type="checkbox" name="showLevels" />
+    <label>
+        Show
+    </label>
+</div>
+
+<div ng-controller="playerController">
+    <div ng-controller="competitionController">
+
+        <div class="alert alert-info">
+            <p>Sort Type: {{ sortType}}</p>
+            <p>Sort Reverse: {{ sortReverse}}</p>
+        </div>
+        
+        <table class="table table-bordered table-inverse">
+            <tr >
+                <th rowspan="2">
+            <div>
+                <a href="" ng-click="sortByField('name')">
+                    Name
+                    <span 
+                        ng-show="sortType == 'name' && !sortReverse"
+                        class="glyphicon glyphicon-chevron-down"></span>
+                    <span 
+                        ng-show="sortType == 'name' && sortReverse == true"
+                        class="glyphicon glyphicon-chevron-up">
+                    </span>
+                </a>
+            </div>
+            </th>
+            <th rowspan="2">
+                Active
+            </th>
+            <th colspan="10">
+                Multiplier
+            </th>
+
+            <th rowspan="2">
+                <a href="">
+                    Total
+                </a>
+            </th>
+            <th rowspan="2">
+                <a href="" ng-click="sortByField('totalWeighted')">
+                    Total Weighted
+                </a>
+            </th>
+            </tr>
+
+            <tr>
+                <th ng-repeat="level in levels">
+            <div class="">
+                <span class="badge">
+                    {{ level.weight}} 
+                </span>
+            </div>
+            </th>
+            </tr>
+
+            <tbody>
+                <tr ng-repeat="player in players| orderBy: sortType: sortReverse">
+                    <td>
+                        {{ player.name}}
+                    </td>   
+                    <td>
+                        <span ng-if="player.active" class="glyphicon glyphicon-ok">
+                        </span>
+                    </td>
+                    <td ng-repeat="level in levels">
+                        {{ getPlayerGoalsByCode(player, level.code)}}
+                    </td>
+                    <td> 
+                        {{ getPlayerTotalGoals(player)}} 
+                    </td>
+                    <td> 
+                        {{ getPlayerWeightedTotalGoals(player.name)}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<hr>
+<div ng-controller="competitionController">
+    <table class="table table-condensed">
+        <thead>
+        </thead>
+        <tbody>
+            <tr>
+                <th>
+                    Multiplier
+                </th>
+                <th>
+                    Competitions
+                </th>
+            </tr>
+            <tr ng-repeat="level in levels">
+                <td>
+                    {{ level.weight}}
+                </td>
+                <td>
+                    <div ng-repeat="competition in level.competitions">
+                        {{ competition}}
+                    </div> 
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
