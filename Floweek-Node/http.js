@@ -1,6 +1,32 @@
-var router = require('./router');
+var router = require('./router.js');
+var port = 3413;
 
-var app = router(3413);
+var app = router(port);
+
+if(app){
+	console.log('server running on port ' + port);
+}
+
+app.interceptor(function(req, res, next){
+	res.setHeader('Access-Control-Allow-Headers','Content-Type');
+	res.setHeader('Access-Control-Allow-Origin','*');
+	next();
+});
+
+app.interceptor(function(req, res, next){
+	res.setHeader('Content-Type', 'application/json;charset=UTF-8');
+	next();
+});
+
+app.get('/players', function(req, res){
+	res.write(JSON.stringify(players));
+	res.end();
+});
+
+app.get('/levels', function(req, res){
+	res.write(JSON.stringify(levels));
+	res.end();
+});
 
 var players = [
 	{
@@ -50,65 +76,55 @@ var players = [
 ];
 
 var levels = [
-        {
-            code: "c20",
-            weight: 20,
-            competitions: ["Champions League"],
-        },
-        {
-            code: "c18",
-            weight: 18,
-            competitions: ["SA", "ENG"]
-        },
-        {
-            code: "c17",
-            weight: 17,
-            competitions: ["Euro"],
-        },
-        {
-            code: "c16",
-            weight: 16,
-            competitions: ["World Cup"]
-        },
-        {
-            code: "c15",
-            weight: 15,
-            competitions: ["Europa League", "DE", "IT"],
-        },
-        {
-            code: "c14",
-            weight: 14,
-            competitions: ["PT", "FR"]
-        },
-        {
-            code: "c12",
-            weight: 12,
-            competitions: ["NL", "AR", "BR"]
-        },
-        {
-            code: "c10",
-            weight: 10,
-            competitions: ["Copa America", "Copa Libertadores"]
-        },
-        {
-            code: "c9",
-            weight: 9,
-            competitions: ["Africa Cup of Nations"]
-        },
-        {
-            code: "c1",
-            weight: 1,
-            competitions: ["Other Official"]
-        },
-        
-    ];
-app.get('/players', function(req, res){
-	res.write(JSON.stringify(players));
-	res.end();
-});
-
-app.get('/levels', function(req, res){
-	res.write(JSON.stringify(levels));
-	res.end();
-});
+	{
+		code: "c20",
+		weight: 20,
+		competitions: ["Champions League"],
+	},
+	{
+		code: "c18",
+		weight: 18,
+		competitions: ["SA", "ENG"]
+	},
+	{
+		code: "c17",
+		weight: 17,
+		competitions: ["Euro"],
+	},
+	{
+		code: "c16",
+		weight: 16,
+		competitions: ["World Cup"]
+	},
+	{
+		code: "c15",
+		weight: 15,
+		competitions: ["Europa League", "DE", "IT"],
+	},
+	{
+		code: "c14",
+		weight: 14,
+		competitions: ["PT", "FR"]
+	},
+	{
+		code: "c12",
+		weight: 12,
+		competitions: ["NL", "AR", "BR"]
+	},
+	{
+		code: "c10",
+		weight: 10,
+		competitions: ["Copa America", "Copa Libertadores"]
+	},
+	{
+		code: "c9",
+		weight: 9,
+		competitions: ["Africa Cup of Nations"]
+	},
+	{
+		code: "c1",
+		weight: 1,
+		competitions: ["Other Official"]
+	},	
+];
 

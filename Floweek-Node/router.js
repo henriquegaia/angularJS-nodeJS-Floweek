@@ -1,30 +1,53 @@
 var http = require('http');
 
 var createRouter = function(port){
-
-	var routes = {
-		GET:{},
-		POST: {}
+	var api={};
+	var interceptors = [];
+	var routes = {};
+	var methods = ['GET', 'POST', 'OPTIONS'];
+	
+	methods.forEach(function(method){
+		routes[method]={};
+		api[method.toLowerCase()] = function(path, fn){
+			routes[method][path]=fn;
+		};
+	});
+	
+	api.interceptor = function(interceptor){
+		interceptors.push(interceptor);
 	};
 	
-	var get = function (path, fn){
-		routes['GET'][path]=fn;
+	var executeInterceptors = function(number, req, res){
+		var interceptor = interceptors[number];
+		if(!interceptor) return;
+		interceptor(req, res, function(){
+			executeInterceptors(++number, req, res);
+		});
 	};
 	
-	var post = function (path, fn){
-		routes['POST'][path]=fn;
+	var handleBody = function(req, res, next){
+		var body=[];
+		req.on('data', function(chunk){
+			body.push(chunk);
+		});
+		req.on('end', function(){
+			req.body = Buffer.concat(body).toString();
+			next();
+		});
 	};
 	
 	http.createServer(function (req, res){
-		res.setHeader('Access-Control-Allow-Origin','*');
-		if(!routes[req.method][req.url]) return res.end();
-		routes[req.method][req.url](req, res);
+		handleBody(req, res, function(){
+			executeInterceptors(0, req, res);		
+			if(!routes[req.method][req.url]){
+				res.statusCode=404;
+				return res.end();
+			}
+			routes[req.method][req.url](req, res);
+		});		
 	}).listen(port);
 	
-	return {
-		get: get,
-		post: post
-	};
+	return api;
 };
 
 module.exports = createRouter;
