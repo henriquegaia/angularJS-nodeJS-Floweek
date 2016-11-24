@@ -43,6 +43,7 @@ var createRouter = function(port){
 				res.statusCode=404;
 				return res.end();
 			}
+			console.log(req.method + ' - ' + req.body);
 			routes[req.method][req.url](req, res);
 		});		
 	}).listen(port);

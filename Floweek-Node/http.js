@@ -18,8 +18,13 @@ app.interceptor(function(req, res, next){
 	next();
 });
 
-app.get('/players', function(req, res){
-	res.write(JSON.stringify(players));
+app.get('/topScorers', function(req, res){
+	res.write(JSON.stringify(topScorers));
+	res.end();
+});
+
+app.get('/bestPlayers', function(req, res){
+	res.write(JSON.stringify(bestPlayers));
 	res.end();
 });
 
@@ -28,7 +33,44 @@ app.get('/levels', function(req, res){
 	res.end();
 });
 
-var players = [
+app.post('/bestPlayerVote', function (req, res){
+	var selectedPlayer = req.body;
+	console.log(selectedPlayer);
+	res.end();
+});
+
+var bestPlayers = [
+	{
+		name: "Cristiano Ronaldo",
+		count: "0"
+	},
+	{
+		name: "Messi",
+		count: "0"
+	},
+	{
+		name: "Pelé",
+		count: "0"
+	},
+	{
+		name: "Maradonna",
+		count: "0"
+	},
+	{
+		name: "Zidane",
+		count: "0"
+	},
+	{
+		name: "Ronaldinho",
+		count: "0"
+	},
+	{
+		name: "Other",
+		count: "0"
+	},
+];
+
+var topScorers = [
 	{
 		name: "Cristiano Ronaldo",
 		active: true,
