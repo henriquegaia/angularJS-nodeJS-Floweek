@@ -3,7 +3,8 @@ angular.module("Floweek").directive("uiAlert", function() {
         templateUrl: "view/alert.html",
         restrict: "AE",
         scope: {
-            title: "@"
+            title: "@",
+            message: "@",
         }, 
     };
 });

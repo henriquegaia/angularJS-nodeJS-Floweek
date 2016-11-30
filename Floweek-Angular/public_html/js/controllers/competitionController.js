@@ -2,6 +2,7 @@ angular.module("Floweek").controller("competitionController", function($scope, l
 
     $scope.levels = [];
     $scope.errorOnLoadLevels = '';
+    $scope.errorsOnLoadCompetitionCtrl = false;
     // -------------------------------------------------------------------------
 
     var loadLevels = function() {
@@ -11,7 +12,7 @@ angular.module("Floweek").controller("competitionController", function($scope, l
                 })
                 .error(function() {
                     $scope.errorOnLoadLevels = 'An error ocurred while trying to load the competitions!';
-
+                    $scope.errorsOnLoadCompetitionCtrl = true;
                 });
     };
 

@@ -6,6 +6,7 @@ angular.module("Floweek").controller("playerController", function($scope, player
     $scope.validFormVoteBestPlayer = false;
     $scope.errorOnLoadTopScorers = '';
     $scope.errorOnLoadBestPlayers = '';
+    $scope.errorsOnLoadPlayerCtrl = false;
 
     // -------------------------------------------------------------------------
 
@@ -108,6 +109,7 @@ angular.module("Floweek").controller("playerController", function($scope, player
                 })
                 .error(function() {
                     $scope.errorOnLoadTopScorers = 'An error ocurred while trying to load the top scorers!';
+                    $scope.errorsOnLoadPlayerCtrl = true;
                 });
     };
 
@@ -120,6 +122,7 @@ angular.module("Floweek").controller("playerController", function($scope, player
                 })
                 .error(function() {
                     $scope.errorOnLoadBestPlayers = 'An error ocurred while trying to load the best players!';
+                    $scope.errorsOnLoadPlayerCtrl = true;
                 });
     };
 

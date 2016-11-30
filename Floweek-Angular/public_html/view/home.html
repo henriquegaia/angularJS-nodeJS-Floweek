@@ -16,7 +16,17 @@
 
 <!-- ----------------------------------------------------------------------- -->
 
-<div ui-alert title="Errors"></div>
+<div ng-controller="playerController">
+    <div ng-controller="competitionController">
+        <div ng-if="errorsOnLoadPlayerCtrl || errorsOnLoadCompetitionCtrl" >
+            <div ui-alert
+                 title="Error"
+                 message="Content Not Loaded">
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <!-- ----------------------------------------------------------------------- -->
 
@@ -48,6 +58,31 @@
     <p>
         player selected: {{ selectedPlayer}}
     </p>
+</div>
+
+<!-- ----------------------------------------------------------------------- -->
+
+<div class="row">
+    <div class="col-md-6">
+        <form>
+            <div class="form-group">
+                <label class="form-control">
+                    Which player do you think should be on the previous list?
+                </label>
+                <input 
+                    type="text"
+                    ng-model="userInputBestPlayerMissing"
+                    class="form-control" 
+                    name="userInputBestPlayerMissing"
+                    ui-best-player-missing/>
+                <p></p>
+                <input
+                    class="btn btn-primary btn-block"
+                    type="submit"
+                    value="Submit"/>
+            </div>
+        </form>
+    </div>
 </div>
 
 <!-- ----------------------------------------------------------------------- -->
