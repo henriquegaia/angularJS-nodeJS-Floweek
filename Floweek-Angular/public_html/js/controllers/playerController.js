@@ -134,3 +134,20 @@ angular.module("Floweek").controller("playerController", function($scope, player
     // -------------------------------------------------------------------------
 
 });
+
+/*
+$scope.weights=[
+	{
+		"1": ["UEFA Champions League"],
+		"2": ["Spanish League", "English League"],
+		"3": ["UEFA European Championship"],
+		"4": ["FIFA World Cup"],
+		"5": ["German League", "Italian League", "UEFA Europa League"],
+		"6": ["Portuguese League", "French League"],
+		"7": ["Netherlands League", "Argentina League", "Brasil League"],
+		"8": ["Copa America", "Copa Libertadores"],
+		"9": ["Africa Cup of Nations"],
+		"10":["Other National Leagues"]
+	},
+];
+*/
