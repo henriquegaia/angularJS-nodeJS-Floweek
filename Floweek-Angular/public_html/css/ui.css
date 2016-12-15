@@ -21,4 +21,18 @@
     font-size:20px;
 }
 
+.ui-accordion{
+    width:100%;
+    heigth:50px;
+    color:red;
+    border: 5px solid black;
+    background-color: yellow;
+}
 
+.ui-accordion-title{
+    color:blue;
+}
+
+.ui-accordion-content{
+    color:green;
+}

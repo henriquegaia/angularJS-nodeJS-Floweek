@@ -16,6 +16,19 @@
 
 <!-- ----------------------------------------------------------------------- -->
 
+<div ui-accordions>
+    <div ui-accordion 
+         title="acc1">
+        111111111111
+    </div>
+    <div ui-accordion 
+         title="acc2">
+        222222222222
+    </div>    
+</div>
+
+<!-- ----------------------------------------------------------------------- -->
+
 <div ng-controller="playerController">
     <div ng-controller="competitionController">
         <div ng-if="errorsOnLoadPlayerCtrl || errorsOnLoadCompetitionCtrl" >
@@ -61,7 +74,7 @@
 </div>
 
 <!-- ----------------------------------------------------------------------- -->
-
+{{ userInputBestPlayerMissing}}
 <div class="row">
     <div class="col-md-6">
         <form>
