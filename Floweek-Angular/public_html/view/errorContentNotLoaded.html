@@ -1,0 +1,10 @@
+<div ng-controller="playerController">
+    <div ng-controller="competitionController">
+        <div ng-if="errorsOnLoadPlayerCtrl || errorsOnLoadCompetitionCtrl" >
+            <div ui-alert
+                 title="Error"
+                 message="Content Not Loaded">
+            </div>
+        </div>
+    </div>
+</div>
