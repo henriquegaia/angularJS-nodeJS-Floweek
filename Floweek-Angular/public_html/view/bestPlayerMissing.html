@@ -1,0 +1,23 @@
+{{ userInputBestPlayerMissing}}
+<div class="row">
+    <div class="col-md-6">
+        <form>
+            <div class="form-group">
+                <label class="form-control">
+                    Which player do you think should be on the previous list?
+                </label>
+                <input 
+                    type="text"
+                    ng-model="userInputBestPlayerMissing"
+                    class="form-control" 
+                    name="userInputBestPlayerMissing"
+                    ui-best-player-missing/>
+                <p></p>
+                <input
+                    class="btn btn-primary btn-block"
+                    type="submit"
+                    value="Submit"/>
+            </div>
+        </form>
+    </div>
+</div>
