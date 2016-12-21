@@ -1,0 +1,79 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-info">
+                    <p>Sort Type: {{ sortType}}</p>
+                    <p>Sort Reverse: {{ sortReverse}}</p>
+                </div>
+            </div>
+        </div>
+
+        <table class="table table-bordered table-inverse">
+            <tr >
+                <th rowspan="2">
+            <div>
+                <a href="" ng-click="sortByField('name')">
+                    Name
+                    <span 
+                        ng-show="sortType == 'name' && !sortReverse"
+                        class="glyphicon glyphicon-chevron-down"></span>
+                    <span 
+                        ng-show="sortType == 'name' && sortReverse == true"
+                        class="glyphicon glyphicon-chevron-up">
+                    </span>
+                </a>
+            </div>
+            </th>
+            <th rowspan="2">
+                Active
+            </th>
+            <th colspan="10">
+                Multiplier
+            </th>
+
+            <th rowspan="2">
+                <a href="">
+                    Total
+                </a>
+            </th>
+            <th rowspan="2">
+                <a href="" ng-click="sortByField('totalWeighted')">
+                    Total Weighted
+                </a>
+            </th>
+            </tr>
+
+            <tr>
+                <th ng-repeat="level in levels">
+            <div class="">
+                <span class="badge">
+                    {{ level.weight}} 
+                </span>
+            </div>
+            </th>
+            </tr>
+
+            <tbody>
+                <tr ng-repeat="player in topScorers| orderBy: sortType: sortReverse">
+                    <td>
+                        {{ player.name | name}}
+                    </td>   
+                    <td>
+                        <span ng-if="player.active" class="glyphicon glyphicon-ok">
+                        </span>
+                    </td>
+                    <td ng-repeat="level in levels">
+                        {{ getPlayerGoalsByCode(player, level.code)}}
+                    </td>
+                    <td> 
+                        {{ getPlayerTotalGoals(player)}} 
+                    </td>
+                    <td> 
+                        {{ getPlayerWeightedTotalGoals(player.name)}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

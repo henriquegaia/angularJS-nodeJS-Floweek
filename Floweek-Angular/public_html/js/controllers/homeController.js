@@ -1,12 +1,14 @@
-angular.module("Floweek").controller("playerController", function($scope, playersAPI) {
+angular.module("Floweek").controller("homeController", function($scope, playersAPI, levelsAPI) {
 
     $scope.topScorers = [];
     $scope.bestPlayers = [];
     $scope.bestPlayerVotes = [];
+    $scope.levels = [];
     $scope.validFormVoteBestPlayer = false;
     $scope.errorOnLoadTopScorers = '';
     $scope.errorOnLoadBestPlayers = '';
-    $scope.errorsOnLoadPlayerCtrl = false;
+    $scope.errorsOnLoadHomeCtrl = false;
+    $scope.errorOnLoadLevels = '';
 
     // -------------------------------------------------------------------------
 
@@ -19,7 +21,7 @@ angular.module("Floweek").controller("playerController", function($scope, player
 
     $scope.validateFormVoteBestPlayer = function() {
         var val = $('#selBestPlayer').val();
-        if (val == '' || val == null) {
+        if (!val) {
             $scope.validFormVoteBestPlayer = false;
         } else {
             $scope.validFormVoteBestPlayer = true;
@@ -43,7 +45,7 @@ angular.module("Floweek").controller("playerController", function($scope, player
     $scope.getPlayerTotalGoals = function(p) {
         var sum;
         angular.forEach($scope.topScorers, function(player, key) {
-            if (p.name == player.name) {
+            if (p.name === player.name) {
                 sum = 0;
                 angular.forEach(player, function(playerValue, playerParam) {
                     if (playerParam == 'c20' || playerParam == 'c18') {
@@ -53,7 +55,7 @@ angular.module("Floweek").controller("playerController", function($scope, player
             }
         });
         return sum;
-    }
+    };
 
     // -------------------------------------------------------------------------
 
@@ -109,7 +111,7 @@ angular.module("Floweek").controller("playerController", function($scope, player
                 })
                 .error(function() {
                     $scope.errorOnLoadTopScorers = 'An error ocurred while trying to load the top scorers!';
-                    $scope.errorsOnLoadPlayerCtrl = true;
+                    $scope.errorsOnLoadHomeCtrl = true;
                 });
     };
 
@@ -122,7 +124,20 @@ angular.module("Floweek").controller("playerController", function($scope, player
                 })
                 .error(function() {
                     $scope.errorOnLoadBestPlayers = 'An error ocurred while trying to load the best players!';
-                    $scope.errorsOnLoadPlayerCtrl = true;
+                    $scope.errorsOnLoadHomeCtrl = true;
+                });
+    };
+
+    // -------------------------------------------------------------------------
+
+    var loadLevels = function() {
+        levelsAPI.getLevels()
+                .success(function(data) {
+                    $scope.levels = data;
+                })
+                .error(function() {
+                    $scope.errorOnLoadLevels = 'An error ocurred while trying to load the competitions!';
+                    $scope.errorsOnLoadHomeCtrl = true;
                 });
     };
 
@@ -130,24 +145,6 @@ angular.module("Floweek").controller("playerController", function($scope, player
 
     loadTopScorers();
     loadBestPlayers();
-
-    // -------------------------------------------------------------------------
+    loadLevels();
 
 });
-
-/*
-$scope.weights=[
-	{
-		"1": ["UEFA Champions League"],
-		"2": ["Spanish League", "English League"],
-		"3": ["UEFA European Championship"],
-		"4": ["FIFA World Cup"],
-		"5": ["German League", "Italian League", "UEFA Europa League"],
-		"6": ["Portuguese League", "French League"],
-		"7": ["Netherlands League", "Argentina League", "Brasil League"],
-		"8": ["Copa America", "Copa Libertadores"],
-		"9": ["Africa Cup of Nations"],
-		"10":["Other National Leagues"]
-	},
-];
-*/
