@@ -39,37 +39,31 @@ app.post('/bestPlayerVote', function (req, res){
 	res.end();
 });
 
-var bestPlayers = [
-	{
-		name: "Cristiano Ronaldo",
-		count: "0"
-	},
-	{
-		name: "Messi",
-		count: "0"
-	},
-	{
-		name: "Pelé",
-		count: "0"
-	},
-	{
-		name: "Maradonna",
-		count: "0"
-	},
-	{
-		name: "Zidane",
-		count: "0"
-	},
-	{
-		name: "Ronaldinho",
-		count: "0"
-	},
-	{
-		name: "Other",
-		count: "0"
-	},
-];
+function createBestPlayer(n, c){
+	
+	return {
+		name: n, 
+		count: c
+	};
+};
 
+var bestPlayers = [
+	createBestPlayer("Cristiano Ronaldo",0),
+	createBestPlayer("Messi",0),
+	createBestPlayer("Pelé",0),
+	createBestPlayer("Maradonna",0),
+	createBestPlayer("Zidane",0)
+];
+/*
+function createTopScorer(n,a){
+
+	return {
+		name:n,
+		active:a,
+		
+	};
+};
+*/
 var topScorers = [
 	{
 		name: "Cristiano Ronaldo",
