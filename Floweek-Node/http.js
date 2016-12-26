@@ -39,12 +39,46 @@ app.post('/bestPlayerVote', function (req, res){
 	res.end();
 });
 
-function createBestPlayer(n, c){
+// --------------------------------------------------------------
+// Levels -------------------------------------------------------
+// --------------------------------------------------------------
+
+function createLevel(code, weight, competitions){
 	
-	return {
-		name: n, 
-		count: c
+	var level = {
+		code: code,
+		weight: weight,
+		competitions: competitions,
 	};
+	
+	return level;
+}
+
+var levels = [
+	createLevel('c_0', 20, ["Champions League"]),
+	createLevel('c_1', 18, ["SA", "ENG"]),
+	createLevel('c_2', 17, ["Euro"]),
+	createLevel('c_3', 16, ["World Cup"]),
+	createLevel('c_4', 15, ["Europa League", "DE", "IT"]),
+	createLevel('c_5', 14, ["PT", "FR"]),
+	createLevel('c_6', 12, ["NL", "AR", "BR"]),
+	createLevel('c_7', 10, ["Copa America", "Copa Libertadores"]),
+	createLevel('c_8', 9,  ["Africa Cup of Nations"]),
+	createLevel('c_9', 1,  ["Other Official"]),
+];
+
+// --------------------------------------------------------------
+// Best Players -------------------------------------------------
+// --------------------------------------------------------------
+
+function createBestPlayer(name, count){
+	
+	var player = {
+		name	: name,
+		count	: count
+	};
+
+	return player;
 };
 
 var bestPlayers = [
@@ -54,113 +88,72 @@ var bestPlayers = [
 	createBestPlayer("Maradonna",0),
 	createBestPlayer("Zidane",0)
 ];
-/*
-function createTopScorer(n,a){
 
-	return {
-		name:n,
-		active:a,
-		
+// --------------------------------------------------------------
+// Top Scorers --------------------------------------------------
+// --------------------------------------------------------------
+
+function createTopScorer(name, active, goals){
+
+	var player = {
+		name 	: name,
+		active 	: active,
+		c_0: goals.c_0,
+		c_1: goals.c_1,
+		c_2: goals.c_2,
+		c_3: goals.c_3,
+		c_4: goals.c_4,
+		c_5: goals.c_5,
+		c_6: goals.c_6,
+		c_7: goals.c_7,
+		c_8: goals.c_8,
+		c_9: goals.c_9,
 	};
+	
+	return player;
 };
-*/
+
 var topScorers = [
+	createTopScorer('Cristiano Ronaldo', true, 
 	{
-		name: "Cristiano Ronaldo",
-		active: true,
-		c20: "100",
-		c18: "400",
-	},
+		c_0: "100", 
+		c_1: "400"
+	}),
+	createTopScorer('Messi', true, 
 	{
-		name: "Messi",
-		active: true,
-		c20: "90",
-		c18: "350",
-	},
+		c_0: "10", 
+		c_1: "40"
+	}),
+	createTopScorer('Pelé', false, 
 	{
-		name: "Pelé",
-		active: false,
-		c20: "0",
-		c18: "0",
-		c17: "0",
-		c16: "12",
-		c15: "0",
-		c14: "0",
-		c12: "34",
-		c10: "17",
-		c9: "0",
-		c1: "694",//757-12-34-17
-	},
+		c_3: "12",
+		c_6: "34",
+		c_7: "17",
+		c_9: "694",
+	}),
+	/*	
+	
+	createTopScorer('Romário', false, 
 	{
-		name: "Romário",
-		active: false,
-		c20: "50",
-		c18: "20000",
-	},
+
+	}),
+	createTopScorer('Gerd Müller', false, 
 	{
-		name: "Gerd Müller",
-		active: false,
-		c20: "50",
-		c18: "20000",
-	},
+
+	}),
+	createTopScorer('Eusébio', false, 
 	{
-		name: "Eusébio",
-		active: false,
-		c20: "50",
-		c18: "20000",
-	},
+
+	}),
+	*/
 ];
 
-var levels = [
-	{
-		code: "c20",
-		weight: 20,
-		competitions: ["Champions League"],
-	},
-	{
-		code: "c18",
-		weight: 18,
-		competitions: ["SA", "ENG"]
-	},
-	{
-		code: "c17",
-		weight: 17,
-		competitions: ["Euro"],
-	},
-	{
-		code: "c16",
-		weight: 16,
-		competitions: ["World Cup"]
-	},
-	{
-		code: "c15",
-		weight: 15,
-		competitions: ["Europa League", "DE", "IT"],
-	},
-	{
-		code: "c14",
-		weight: 14,
-		competitions: ["PT", "FR"]
-	},
-	{
-		code: "c12",
-		weight: 12,
-		competitions: ["NL", "AR", "BR"]
-	},
-	{
-		code: "c10",
-		weight: 10,
-		competitions: ["Copa America", "Copa Libertadores"]
-	},
-	{
-		code: "c9",
-		weight: 9,
-		competitions: ["Africa Cup of Nations"]
-	},
-	{
-		code: "c1",
-		weight: 1,
-		competitions: ["Other Official"]
-	},	
-];
+
+
+
+
+
+
+
+
 

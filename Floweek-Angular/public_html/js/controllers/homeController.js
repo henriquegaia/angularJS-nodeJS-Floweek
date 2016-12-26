@@ -48,7 +48,7 @@ angular.module("Floweek").controller("homeController", function($scope, playersA
             if (p.name === player.name) {
                 sum = 0;
                 angular.forEach(player, function(playerValue, playerParam) {
-                    if (playerParam == 'c20' || playerParam == 'c18') {
+                    if (playerParam == 'c_0' || playerParam == 'c_1') {
                         sum += parseInt(playerValue);
                     }
                 });
@@ -66,10 +66,10 @@ angular.module("Floweek").controller("homeController", function($scope, playersA
                 sum = 0;
                 angular.forEach(player, function(playerValue, playerParam) {
                     switch (playerParam) {
-                        case 'c20':
+                        case 'c_0':
                             sum += parseInt(playerValue) * 20;
                             break;
-                        case 'c18':
+                        case 'c_1':
                             sum += parseInt(playerValue) * 18;
                             break;
                         default:
@@ -86,13 +86,37 @@ angular.module("Floweek").controller("homeController", function($scope, playersA
     $scope.getPlayerGoalsByCode = function(player, code) {
         var val = '';
         angular.forEach($scope.topScorers, function(p, key) {
-            if (p.name == player.name) {
+            if (p.name === player.name) {
                 switch (code) {
-                    case 'c20':
-                        val = p.c20;
+                    case 'c_0':
+                        val = p.c_0;
                         break;
-                    case 'c18':
-                        val = p.c18;
+                    case 'c_1':
+                        val = p.c_1;
+                        break;
+                    case 'c_2':
+                        val = p.c_2;
+                        break;
+                    case 'c_3':
+                        val = p.c_3;
+                        break;
+                    case 'c_4':
+                        val = p.c_4;
+                        break;
+                    case 'c_5':
+                        val = p.c_5;
+                        break;
+                    case 'c_6':
+                        val = p.c_6;
+                        break;
+                    case 'c_7':
+                        val = p.c_7;
+                        break;
+                    case 'c_8':
+                        val = p.c_8;
+                        break;
+                    case 'c_9':
+                        val = p.c_9;
                         break;
                     default:
                         break;
