@@ -48,8 +48,10 @@ angular.module("Floweek").controller("homeController", function($scope, playersA
             if (p.name === player.name) {
                 sum = 0;
                 angular.forEach(player, function(playerValue, playerParam) {
-                    if (playerParam == 'c_0' || playerParam == 'c_1') {
-                        sum += parseInt(playerValue);
+                    for (var i = 0; i <= 9; i++) {
+                        if (playerParam === 'c_' + i) {
+                            return sum += parseInt(playerValue);
+                        }
                     }
                 });
             }
