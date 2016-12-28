@@ -12,6 +12,12 @@ angular.module("Floweek").controller("homeController", function($scope, playersA
 
     // -------------------------------------------------------------------------
 
+    $scope.N_LEVELS = 10;
+    $scope.FIRST_LEVEL = 0;
+    $scope.LEVEL_CODE_PREPEND = 'c_';
+
+    // -------------------------------------------------------------------------
+
     $scope.sortByField = function(field) {
         $scope.sortType = field;
         $scope.sortReverse = !$scope.sortReverse;
@@ -48,8 +54,8 @@ angular.module("Floweek").controller("homeController", function($scope, playersA
             if (p.name === player.name) {
                 sum = 0;
                 angular.forEach(player, function(playerValue, playerParam) {
-                    for (var i = 0; i <= 9; i++) {
-                        if (playerParam === 'c_' + i) {
+                    for (var i = $scope.FIRST_LEVEL; i <= $scope.N_LEVELS; i++) {
+                        if (playerParam === $scope.LEVEL_CODE_PREPEND + i) {
                             return sum += parseInt(playerValue);
                         }
                     }
@@ -63,25 +69,31 @@ angular.module("Floweek").controller("homeController", function($scope, playersA
 
     $scope.getPlayerWeightedTotalGoals = function(playerName) {
         var sum;
+
         angular.forEach($scope.topScorers, function(player, key) {
             if (playerName === player.name) {
                 sum = 0;
                 angular.forEach(player, function(playerValue, playerParam) {
-                    switch (playerParam) {
-                        case 'c_0':
-                            sum += parseInt(playerValue) * 20;
-                            break;
-                        case 'c_1':
-                            sum += parseInt(playerValue) * 18;
-                            break;
-                        default:
-                            break;
+
+                    for (var i = $scope.FIRST_LEVEL; i <= $scope.N_LEVELS - 1; i++) {
+
+                        var weight = -1;
+
+                        var code = $scope.LEVEL_CODE_PREPEND + i;
+
+                        if ($scope.levels[i].hasOwnProperty('code')) {
+                            weight = $scope.levels[i].weight;
+                        }
+
+                        if (playerParam === code) {
+                            sum += parseInt(playerValue) * weight;
+                        }
                     }
                 });
             }
         });
         return sum;
-    }
+    };
 
     // -------------------------------------------------------------------------
 

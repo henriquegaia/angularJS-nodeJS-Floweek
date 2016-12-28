@@ -2,6 +2,8 @@
 HIGH
 =================================================
 
+-not loading accordions, alert
+
 -unique references to c20 c18 ...
     -playerController
         case 'c20':
