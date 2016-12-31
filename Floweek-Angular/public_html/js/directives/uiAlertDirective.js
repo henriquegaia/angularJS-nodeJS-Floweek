@@ -1,6 +1,6 @@
 angular.module("Floweek").directive("uiAlert", function() {
     return {
-        templateUrl: "view/alert.html",
+        templateUrl: "view/home/partials/alert.html",
         restrict: "AE",
         scope: {
             title: "@",

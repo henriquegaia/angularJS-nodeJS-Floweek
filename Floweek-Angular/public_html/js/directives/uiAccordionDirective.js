@@ -21,7 +21,7 @@ angular.module("Floweek").directive("uiAccordions", function() {
 angular.module("Floweek").directive("uiAccordion", function() {
 
     return {
-        templateUrl: "view/accordion.html",
+        templateUrl: "view/home/partials/accordion.html",
         transclude: true,
         scope: {
             title: "@",
