@@ -14,8 +14,6 @@ angular.module("Floweek").factory("timestampInterceptor", function() {
 
             var newUrl = config.url + '?timestamps=' + time;
             
-            console.log(newUrl);
-            
             return config;
         }
     };

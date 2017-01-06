@@ -41,15 +41,20 @@
         <script src="js/filters/name.js"></script>
 
         <script src="js/interceptors/timestampsInterceptor.js"></script>
+        <script src="js/interceptors/errorInterceptor.js"></script>
+        <script src="js/interceptors/loadingInterceptor.js"></script>
 
     </head>
     <body>
-        <div ng-include="'view/header.html'"></div>
-        <div class="container">
-            <div ng-view></div>
+        <div ng-show="loading">
+            Loading ...
         </div>
-
-        <div ng-include="'view/footer.html'"></div>
-
+        <div ng-hide="loading">
+            <div ng-include="'view/header.html'"></div>
+            <div class="container">
+                <div ng-view></div>
+            </div>
+            <div ng-include="'view/footer.html'"></div>
+        </div>
     </body>
 </html>

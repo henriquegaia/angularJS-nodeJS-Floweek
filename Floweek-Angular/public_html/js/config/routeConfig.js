@@ -9,6 +9,8 @@ angular.module("Floweek").config(function($routeProvider) {
         templateUrl: "view/error/404.html"
     });
 
-    $routeProvider.otherwise({redirectTo: "/"});
+    $routeProvider.otherwise({
+        redirectTo: "/"
+    });
 });
 
